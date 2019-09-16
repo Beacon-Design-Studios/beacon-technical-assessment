@@ -1,0 +1,17 @@
+@import '../../styles/mixins/base.scss';
+.number-cell {
+  @include header-4;
+  border-radius: 3px;
+  border: 2px solid $charcoal-black;
+  background-color: $pastel-blue;
+  color: $ash-green;
+  height: 100px;
+  max-width: 50px;
+  padding: $space $space-sm;
+  text-align: center;
+
+  &:focus {
+    background-color: white;
+    color: $charcoal-black;
+  }
+}

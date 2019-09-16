@@ -1,0 +1,17 @@
+@import '../../styles/mixins/base.scss';
+.generic-button {
+  @include body-large;
+  padding: $space;
+  background-color: $ash-green;
+  border: none;
+  color: white;
+  box-shadow: $shadow;
+  cursor: pointer;
+
+  &:focus {
+    outline-color: $leaf-green;
+  }
+  &:hover {
+    background-color: $charcoal-black;
+  }
+}

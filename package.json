@@ -1,0 +1,22 @@
+{
+  "name": "beacon_technical_assessment",
+  "version": "1.0.0",
+  "description": "Assessment designed to test technical knowledge of core web development concepts",
+  "main": "index.js",
+  "dependencies": {
+    "create-react-app": "^3.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "setup": "cd assembly-dashboard && npm install",
+    "start": "cd assembly-dashboard && npm start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "assessment",
+    "webdev"
+  ],
+  "author": "Yash Kadaru",
+  "private": true,
+  "license": "UNLICENSED"
+}

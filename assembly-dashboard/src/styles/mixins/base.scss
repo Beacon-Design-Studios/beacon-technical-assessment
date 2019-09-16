@@ -1,0 +1,50 @@
+// colors
+$grain-yellow: #E1CE7A;
+$charcoal-black: #232C33;
+$pastel-blue: #A0C1D1;
+$leaf-green: #C0DA74;
+$ash-green: #4D5A49;
+$pasture-pink: #E6BCCD;
+// space
+$space: 15px;
+$space-lg: 50px;
+$space-sm: 10px;
+// fonts
+$primary-font: "Oxygen";
+$secondary-font: "Source Serif Pro";
+@mixin header-1 {
+  font-size: 5.61rem;
+  font-weight: 700;
+  font-family: "Oxygen";
+}
+@mixin header-2 {
+  font-size: 4.209rem;
+  font-family: "Oxygen";
+}
+@mixin header-3 {
+  font-size: 3.157rem;
+  font-weight: 300;
+  font-family: "Oxygen";
+}
+@mixin header-4 {
+  font-size: 2.369rem;
+  font-weight: 700;
+  font-family: "Oxygen";
+}
+@mixin body-base {
+  font-family: "Source Serif Pro";
+}
+@mixin body-large {
+  font-size: 1.777rem;
+  font-family: "Source Serif Pro";
+}
+@mixin body {
+  font-size: 1.333rem;
+  font-family: "Source Serif Pro";
+}
+@mixin body-small {
+  font-size: 0.75rem;
+  font-family: "Source Serif Pro";
+}
+//shadows 
+$shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
