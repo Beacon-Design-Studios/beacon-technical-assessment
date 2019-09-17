@@ -23,7 +23,7 @@ Before we get there, we'd love if you could complete this technical challenge to
 - data for this app can be fetched from here: [JSONBin - Data](https://api.jsonbin.io/b/5d7d1c1cde91160d28724a76/4). Refer to their API docs to figure out how to read data from a JSON Bin.
 - the login code for this app can be fetched from here: [JSONBin - Login](https://api.jsonbin.io/b/5d7e46efcfe9d23b10f658bb)
 - For documentation & refreshers, you can refer to anything you want! We recommend MDN. E.g. [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
-- Once complete, push your code to a **private** repository on your Github account, and add `@MightyRevenge` as a collaborator.
+- Once complete, push your code to a **private** repository on your Github account with the format `{your first name}-seroclinix-assessment`, and add `@MightyRevenge` as a collaborator. Then email us with a link as well!
 
 1. Something is not right in the routes in `App.js`. Fix the code.
 2. Our app logo is for Taco Assembly, but it seems to be rendering something else. The logo is in our project, can you fix the code in `SplashPage.js` to import the correct logo?
