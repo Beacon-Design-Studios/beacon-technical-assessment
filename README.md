@@ -18,6 +18,8 @@ Before we get there, we'd love if you could complete this technical challenge to
 - run `npm run setup` then `npm run start` to get started!
 
 ## Instructions
-1. Initialize the project as a `git` repository and commit any changes you make!
-2. Starting with `App.js`, follow the instructions to fix & enhance this app.
-3. Once complete, push your code to a **private** repository on your Github account, and add `@MightyRevenge` as a collaborator.
+- Initialize the project as a `git` repository and commit any changes you make!
+- do at-least (3) of the following numbered tasks. You can do as many as you want!
+- Once complete, push your code to a **private** repository on your Github account, and add `@MightyRevenge` as a collaborator.
+
+<!-- ADD TASKS HERE -->
