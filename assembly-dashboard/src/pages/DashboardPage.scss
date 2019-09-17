@@ -22,6 +22,8 @@
     background-color: $white;
     border: 3px dashed $gravel-grey;
     padding: $space-reg;
+    display: flex;
+    flex-flow: row wrap;
   }
   &__customer {
     @include body-large;
@@ -29,6 +31,16 @@
     padding: $space-lg;
     border-radius: 3px;
     color: $charcoal-black;
+    margin: $space-sm;
+
+    &-order {
+      color: $ash-green;
+      font-weight: 700;
+    }
+    &-name {
+      @include body;
+      margin-right: $space-sm;
+    }
   }
   &__stage {
     display: flex;
@@ -65,6 +77,15 @@
       @include body-large;
       background-color: $pastel-blue;
       padding: $space-lg;
+      
+      &:not(:last-child) {
+        margin-bottom: $space-sm;
+      }
+    }
+    &-item-name {
+      font-weight: 700;
+      color: $ash-green;
+      margin-right: $space-sm;
     }
   }
 
@@ -77,8 +98,12 @@
     flex-flow: column nowrap;
   }
   &__cash-order {
-    background-color: $white;
+    background-color: $salsa-red;
     padding: $space-sm;
+
+    &--complete {
+      background-color: $white;
+    }
   }
   &__revenue-total {
     @include header-2;

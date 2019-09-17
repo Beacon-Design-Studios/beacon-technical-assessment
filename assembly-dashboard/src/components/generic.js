@@ -5,8 +5,6 @@ export const GenericButton = styled.button`
   display: inline-flex;
   align-content: center;
   justify-content: center;
-  width: 250px;
-  min-height: 50px;
 `;
 
 export const GenericInput = styled.input`

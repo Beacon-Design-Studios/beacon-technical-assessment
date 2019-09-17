@@ -14,4 +14,20 @@
   &:hover {
     background-color: $charcoal-black;
   }
+
+  &--small {
+    @include body-small;
+    height: auto;
+    width: 100px;
+    padding: $space-sm;
+  }
+
+  &--secondary {
+    background-color: $grain-yellow;
+    color: $charcoal-black;
+
+    &:hover {
+      color: $white;
+    }
+  }
 }
