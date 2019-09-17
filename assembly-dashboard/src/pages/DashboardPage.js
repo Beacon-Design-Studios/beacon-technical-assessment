@@ -10,14 +10,13 @@ export default class DashboardPage extends Component {
     orders: [],
     stages: {},
     customers: {},
-    recipes: {},
-    reference: {}
+    recipes: {}
   }
 
   componentDidMount() {
     authManager.checkIfAuthenticated((secondsLeft) => {
       if (!secondsLeft) {
-        this.props.history.push('/');
+        // TODO: (Q.11) the redirect to the SplashPage is missing here. can you add it? Refer to LoginPage or SplashPage for a hint.
       }
     });
 
@@ -26,48 +25,51 @@ export default class DashboardPage extends Component {
       Object.values(data.customers).forEach((customer) => {
         if (customer.order && customer.order.length) {
           customer.order.forEach((order) => {
+            // TODO: (Q.7) Each order must have a unique id. How can you use the imported nanoid library to make one instead of what's there now?
+            // TODO: (Q.8) The orders initially are going into the source column. But they're supposed to go into the queue! How can you fix it?
             orders.push({
-              id: nanoid(),
+              id: Math.random() + customer.name,
               name: order,
               customer: customer.name,
-              state: order.stage || 'pending'
+              state: order.stage || 'source'
             });
           });
         }
       });
 
-      let stagesModified = data.stages;
-      stagesModified['pending'].tacos.push(...orders.filter(order => order.state === 'pending'));
-
       this.setState({
-        stages: stagesModified,
-        customers: data.customers,
         orders: orders,
-        recipes: data.recipes,
-        reference: data
+        stages: data.stages,
+        customers: data.customers,
+        recipes: data.recipes
       });
     });
   }
 
   orderStateChange = (fromState, toState, tacoId) => {
-    let stagesCopy = this.state.stages;
+    if (fromState === 'cash') {
+      return;
+    }
+    let ordersCopy = this.state.orders;
 
-    let foundOrder = stagesCopy[fromState].tacos.find((order, index) => {
+    let foundOrder = ordersCopy.find((order, index) => {
       if (order.id === tacoId) {
         if (toState !== 'cash') {
-          stagesCopy[fromState].tacos.splice(index, 1);
           order.state = toState;
-          stagesCopy[toState].tacos.push(order);
         } else {
-          order.cashed = this.getRoundUpNumber(this.getNumberInRange(Math.random(), 5, 15) * 1.15);
+          // TODO: (Q.9) Based on how good the experience, customers will pay anywhere between $5 and $15. But the number isn't rounded.
+          // Thankfully, there's a function in our component called getRoundUpNumber(). How can you use that function
+          // to roundup the following number?
+          order.cashed = this.getNumberInRange(Math.random(), 5, 15) * 1.15;
         }
         return true;
       }
+      return false;
     });
 
     if (foundOrder) {
       this.setState({
-        stages: stagesCopy
+        orders: ordersCopy
       });
     }
   }
@@ -84,6 +86,8 @@ export default class DashboardPage extends Component {
         return 'Plate';
       case 'complete':
         return 'Cash-in';
+      default:
+        return 'placeholder';
     }
   }
 
@@ -96,33 +100,38 @@ export default class DashboardPage extends Component {
   }
 
   getRevenue() {
-    return this.state.stages["complete"] ? this.state.stages["complete"].tacos.reduce((sum, curr) => {
+    return this.state.orders && this.state.orders.length ? this.getTacosInState('complete').reduce((sum, curr) => {
       return curr.cashed ? sum + curr.cashed : sum;
     }, 0) : 0;
   }
 
+  getTacosInState(stateName) {
+    return (this.state.orders || []).filter((order) => order.state === stateName);
+  }
+
   render() {
     let sourceTacos, cookTacos, serveTacos, cashedTacos;
-    if (Object.values(this.state.stages) && Object.values(this.state.stages).length) {
-      sourceTacos = this.state.stages["source"].tacos.map((taco) => {
+    if (this.state.orders && this.state.orders.length) {
+      sourceTacos = this.getTacosInState('source').map((taco) => {
         return <div key={taco.id} className="dashboard-page__stage-item">
           <span className="dashboard-page__stage-item-name">{taco.name}</span>
           <Button small secondary clickHandler={() => this.orderStateChange('source', 'cook', taco.id)}>{this.getTacoCardActionTxt('source')}</Button>
         </div>;
       });
-      cookTacos = this.state.stages["cook"].tacos.map((taco) => {
+      cookTacos = this.getTacosInState('cook').map((taco) => {
         return <div key={taco.id} className="dashboard-page__stage-item">
           <span className="dashboard-page__stage-item-name">{taco.name}</span>
           <Button small secondary clickHandler={() => this.orderStateChange('cook', 'serve', taco.id)}>{this.getTacoCardActionTxt('cook')}</Button>
         </div>;
       });
-      serveTacos = this.state.stages["serve"].tacos.map((taco) => {
+      serveTacos = this.getTacosInState('serve').map((taco) => {
         return <div key={taco.id} className="dashboard-page__stage-item">
           <span className="dashboard-page__stage-item-name">{taco.name}</span>
           <Button small secondary clickHandler={() => this.orderStateChange('serve', 'complete', taco.id)}>{this.getTacoCardActionTxt('serve')}</Button>
         </div>;
       });
-      cashedTacos = this.state.stages["complete"].tacos.slice().reverse().map((taco) => {
+      // TODO: (Q.10) How can you render the cashed tacos in reverse order?
+      cashedTacos = this.getTacosInState('complete').map((taco) => {
           return  <div key={taco.id} className={`dashboard-page__cash-order ${taco.cashed ? 'dashboard-page__cash-order--complete' : ''}`}>
             <span className="dashboard-page__cash-order-id">{taco.id}</span>
             &nbsp;-&nbsp;{taco.name}&nbsp;-&nbsp;{taco.customer}&nbsp;-&nbsp;
@@ -135,9 +144,9 @@ export default class DashboardPage extends Component {
       <main className="dashboard-page">
         <section className="dashboard-page__kanban">
           <div className="dashboard-page__floor">
-            <h3 className="dashboard-page__floor-title">Customers</h3>
+            <h3 className="dashboard-page__floor-title">{this.state.stages['pending']? this.state.stages['pending'].title : 'Customers'}</h3>
             <div className="dashboard-page__customers">
-              {(this.state.stages["pending"] ? this.state.stages["pending"].tacos : []).map((taco) => {
+              {this.getTacosInState('pending').map((taco) => {
                 return  <div key={taco.id} className="dashboard-page__customer">
                   <span className="dashboard-page__customer-order">{taco.name}</span>
                   <span className="dashboard-page__customer-name">&nbsp;for&nbsp;{taco.customer}</span>

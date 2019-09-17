@@ -13,9 +13,8 @@ export default class LoginPage extends Component {
 
   componentDidMount() {
     authManager.checkIfAuthenticated((secondsLeft) => {
-      if (secondsLeft) {
-        this.props.history.push('/dashboard');
-      }
+      // TODO: (Q.5) What condition and code must be placed here to redirect to the dashboard if they're already logged in?
+      // Refer to SplashPage.js for a hint.
     });
   }
 
@@ -32,19 +31,15 @@ export default class LoginPage extends Component {
   }
 
   loginHandler = () => {
+    // the following variable contains the login string the user entered
     let userLogin = '';
     this.state.cellRefs.forEach((ref) => {
       userLogin += ref.current.value;
     });
 
-    fetch('https://api.jsonbin.io/b/5d7e46efcfe9d23b10f658bb').then((resp) => {
-      return resp.json();
-    }).then((data) => {
-      if (data.login.keycode === userLogin) {
-        authManager.authorize();
-        this.props.history.push('/dashboard');
-      }
-    });
+    // TODO: (Q.6) make an HTTP call to the correct JSONBin to fetch the login code. Then, check if that code matches the one the user
+    // entered. If they match, log them in using the authorize() function in the authManager and then redirect them to the dashboard.
+    // Use the Fetch browser API to make the request.
   }
 
   render() {
