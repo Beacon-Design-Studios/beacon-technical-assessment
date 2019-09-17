@@ -4,6 +4,11 @@ import './DashboardPage.scss';
 import authManager from '../utilities/auth';
 
 export default class DashboardPage extends Component {
+  state = {
+    revenue: 0,
+    completed: []
+  }
+
   componentDidMount() {
     authManager.checkIfAuthenticated((secondsLeft) => {
       if (!secondsLeft) {
@@ -23,28 +28,36 @@ export default class DashboardPage extends Component {
             </div>
           </div>
           <div className="dashboard-page__stage">
-            <div className="dashboard-page__stage-lane-container dashboard-page__stage-source">
+            <div className="dashboard-page__stage-lane dashboard-page__stage-source">
               <h3 className="dashboard-page__stage-lane-title">Source</h3>
-              <div className="dashboard-page__stage-lane">
+              <div className="dashboard-page__stage-lane-container">
                 <div className="dashboard-page__stage-item">This is an item</div>
               </div>
             </div>
-            <div className="dashboard-page__stage-lane-container dashboard-page__stage-cook">
+            <div className="dashboard-page__stage-lane dashboard-page__stage-cook">
               <h3 className="dashboard-page__stage-lane-title">Cook</h3>
-              <div className="dashboard-page__stage-lane">
+              <div className="dashboard-page__stage-lane-container">
                 <div className="dashboard-page__stage-item">This is an item</div>
               </div>
             </div>
-            <div className="dashboard-page__stage-lane-container dashboard-page__stage-serve">
+            <div className="dashboard-page__stage-lane dashboard-page__stage-serve">
               <h3 className="dashboard-page__stage-lane-title">Serve</h3>
-              <div className="dashboard-page__stage-lane">
+              <div className="dashboard-page__stage-lane-container">
                 <div className="dashboard-page__stage-item">This is an item</div>
               </div>
             </div>
           </div>
           <div className="dashboard-page__admin">
             <div className="dashboard-page__register">
-              <div className="dashboard-page__cash-order">Complete</div>
+              <h3 className="dashboard-page__register-title">Register</h3>
+              <div className="dashboard-page__register-container">
+                <div className="dashboard-page__revenue-total">
+                  $<span>{this.state.revenue}</span>
+                </div>
+                <div className="dashboard-page__order-history">
+                  <div className="dashboard-page__cash-order">completed order</div>
+                </div>
+              </div>
             </div>
           </div>
         </section>

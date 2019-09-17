@@ -9,7 +9,9 @@
 
   &__kanban {
     @include container-layout;
+    padding: $space-xlg 0;
   }
+
   &__floor {
     &-title {
       @include header-3;
@@ -32,12 +34,13 @@
     display: flex;
     justify-content: space-between;
     flex-flow: row nowrap;
+    margin-bottom: $space-lg;
 
     @media #{$breakpoint-tablet} {
       flex-flow: column nowrap;
     }
 
-    &-lane-container {
+    &-lane {
       flex: 0 1 33%;
     }
 
@@ -45,7 +48,7 @@
       @include header-3;
     }
 
-    &-lane {
+    &-lane-container {
       background-color: $white;
       border: 3px dashed $gravel-grey;
       padding: $space-reg;
@@ -63,5 +66,21 @@
       background-color: $pastel-blue;
       padding: $space-lg;
     }
+  }
+
+  &__admin {
+    background-color: $grain-yellow;
+    padding: $space-sm $space-reg;
+  }
+  &__order-history {
+    display: flex;
+    flex-flow: column nowrap;
+  }
+  &__cash-order {
+    background-color: $white;
+    padding: $space-sm;
+  }
+  &__revenue-total {
+    @include header-2;
   }
 }
