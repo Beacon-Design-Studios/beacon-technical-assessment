@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import nanoid from 'nanoid';
 import './LoginPage.scss';
 
-import storageManager from '../utilities/storage';
+import authManager from '../utilities/auth';
 
 import NumberCell from '../components/NumberCell/NumberCell';
 import Button from '../components/Button/Button';
@@ -13,9 +12,11 @@ export default class LoginPage extends Component {
   }
 
   componentDidMount() {
-    if (storageManager.getItem('sessionHash')) {
-      this.props.history.push('/dashboard');
-    }
+    authManager.checkIfAuthenticated((secondsLeft) => {
+      if (secondsLeft) {
+        this.props.history.push('/dashboard');
+      }
+    });
   }
 
   keyUpHandler = (e, ref) => {
@@ -35,11 +36,12 @@ export default class LoginPage extends Component {
     this.state.cellRefs.forEach((ref) => {
       userLogin += ref.current.value;
     });
+
     fetch('https://api.jsonbin.io/b/5d7e46efcfe9d23b10f658bb').then((resp) => {
       return resp.json();
     }).then((data) => {
       if (data.login.keycode === userLogin) {
-        storageManager.setItem('sessionHash', nanoid());
+        authManager.authorize();
         this.props.history.push('/dashboard');
       }
     });
