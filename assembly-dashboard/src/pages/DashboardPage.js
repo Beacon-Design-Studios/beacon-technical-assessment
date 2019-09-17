@@ -59,7 +59,7 @@ export default class DashboardPage extends Component {
           order.state = toState;
           stagesCopy[toState].tacos.push(order);
         } else {
-          order.cashed =  this.getRoundUpNumber(this.getNumberInRange(Math.random(), 5, 15) * 1.15);
+          order.cashed = this.getRoundUpNumber(this.getNumberInRange(Math.random(), 5, 15) * 1.15);
         }
         return true;
       }
@@ -96,12 +96,9 @@ export default class DashboardPage extends Component {
   }
 
   getRevenue() {
-    if (!!this.state && !!this.state.stages["complete"]) {
-      return this.state.stages["complete"].tacos.reduce((sum, curr) => {
-        return curr.cashed ? sum + curr.cashed : sum;
-      }, 0);
-    }
-    return 0;
+    return this.state.stages["complete"] ? this.state.stages["complete"].tacos.reduce((sum, curr) => {
+      return curr.cashed ? sum + curr.cashed : sum;
+    }, 0) : 0;
   }
 
   render() {
