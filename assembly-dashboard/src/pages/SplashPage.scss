@@ -7,8 +7,8 @@
   justify-content: center;
   align-items: center;
   font-size: 2rem;
-  height: 100vh;
-  width: 100%;
+  min-height: 100vh;
+  width: auto;
 
   &__title {
     color: $ash-green;

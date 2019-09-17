@@ -1,7 +1,7 @@
 @import '../../styles/mixins/base.scss';
 .generic-button {
   @include body-large;
-  padding: $space;
+  padding: $space-reg;
   background-color: $ash-green;
   border: none;
   color: white;

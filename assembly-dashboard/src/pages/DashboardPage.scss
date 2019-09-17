@@ -1,6 +1,67 @@
 @import '../styles/mixins/base.scss';
 .dashboard-page {
   background-color: $leaf-green;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
+  @media #{$breakpoint-tablet} {
+    padding: $space-reg;
+  }
+
+  &__kanban {
+    @include container-layout;
+  }
+  &__floor {
+    &-title {
+      @include header-3;
+    }
+    padding: $space-lg 0;
+  }
+  &__customers {
+    background-color: $white;
+    border: 3px dashed $gravel-grey;
+    padding: $space-reg;
+  }
+  &__customer {
+    @include body-large;
+    background-color: $pastel-blue;
+    padding: $space-lg;
+    border-radius: 3px;
+    color: $charcoal-black;
+  }
+  &__stage {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row nowrap;
+
+    @media #{$breakpoint-tablet} {
+      flex-flow: column nowrap;
+    }
+
+    &-lane-container {
+      flex: 0 1 33%;
+    }
+
+    &-lane-title {
+      @include header-3;
+    }
+
+    &-lane {
+      background-color: $white;
+      border: 3px dashed $gravel-grey;
+      padding: $space-reg;
+      margin-bottom: $space-sm;
+
+      @media #{$breakpoint-desktop} {
+        &:not(:last-child) {
+          margin-right: $space-sm;
+        }
+      }
+    }
+
+    &-item {
+      @include body-large;
+      background-color: $pastel-blue;
+      padding: $space-lg;
+    }
+  }
 }
