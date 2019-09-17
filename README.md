@@ -12,4 +12,12 @@ Before we get there, we'd love if you could complete this technical challenge to
 - helps us understand if you know more about the ecosystem: preprocessors such as SASS, javascript libraries, node & npm etc.
 - helps us understand if you can get familiar with an existing architecture quickly and if you have the ability to traverse, deduce and reverse-engineer code.
 
+## Requirements
+- Github account
+- Node.js & npm (8.15 or later) installed globally or through `nvm`
+- run `npm run setup` then `npm run start` to get started!
+
 ## Instructions
+1. Initialize the project as a `git` repository and commit any changes you make!
+2. Starting with `App.js`, follow the instructions to fix & enhance this app.
+3. Once complete, push your code to a **private** repository on your Github account, and add `@MightyRevenge` as a collaborator.
