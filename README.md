@@ -1,7 +1,7 @@
 # Technical Challenge: Taco Assembly
-### `Beacon Design x Seroclinix | Development`
+### `Beacon Design | Development`
 
-First off, thank you so much for applying to Seroclinix! We're excited to meet you and chat with you about what we want to accomplish and how you can help.
+First off, thank you so much for applying to Beacon Design! We're excited to meet you and chat with you about what we want to accomplish and how you can help.
 
 Before we get there, we'd love if you could complete this technical challenge to determine if you're the right fit for this particular role.
 
@@ -20,6 +20,6 @@ Before we get there, we'd love if you could complete this technical challenge to
 ## Instructions
 - Initialize the project as a `git` repository and commit any changes you make!
 - do at-least (3) of the following numbered tasks. You can do as many as you want!
-- Once complete, push your code to a **private** repository on your Github account, and add `@MightyRevenge` as a collaborator.
+- Once complete, push your code to a **private** repository on your Github account, and add `@yashsway` as a collaborator.
 
 <!-- ADD TASKS HERE -->
